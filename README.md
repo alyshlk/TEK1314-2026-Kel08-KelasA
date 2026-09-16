@@ -2,64 +2,62 @@
 
 **Mata Kuliah:** TEK1314 - Keamanan Siber (D4 Teknologi Rekayasa Komputer)
 **Kelompok:** 8 — Kelas A
-**Fase Design (Pertemuan ke-4):** Perancangan Arsitektur & Skema IP
+**Fase:** Design Phase (Pertemuan ke-4 / Minggu ke-3 Proyek PBL)
 
 ---
 
 ## Deskripsi Skenario
 
-Proyek ini merancang lab jaringan berisi tiga node utama dalam segmen IP unik **192.168.8.0/24**.
+Proyek ini merancang sebuah **medan perang jaringan** (network lab) yang terdiri dari tiga peran utama: penyerang, target, dan pemantau. Seluruh node berada dalam satu segmen jaringan **192.168.8.0/24** (sesuai kewajiban IP unik per kelompok, mengacu Kontrak Kuliah Poin 3a).
 
-| Node | Peran | OS | IP |
-|---|---|---|---|
-| Attacker | Red Team (penyerang) | Kali Linux | 192.168.8.100 |
-| Target (Korban) | Server yang dieksploitasi | Ubuntu Server CLI | 192.168.8.5 |
-| Monitoring | Blue Team (pemantau) | Security Onion | 192.168.8.200 |
+| Node                 | Peran                     | OS                | IP            |
+| -------------------- | ------------------------- | ----------------- | ------------- |
+| Attacker Node        | Red Team (penyerang)      | Kali Linux        | 192.168.8.100 |
+| Target Node (Korban) | Server yang dieksploitasi | Ubuntu Server CLI | 192.168.8.5   |
+| Monitoring Node      | Blue Team (pemantau)      | Security Onion    | 192.168.8.200 |
 
-Target menjalankan layanan yang memiliki potensi celah demonstrasi:
-- Apache2 + PHP (port 80) — SQL Injection / XSS
-- OpenSSH (port 22) — brute-force
-- MySQL (port 3306) — brute-force kredensial
+### Target & Layanan
+
+Target adalah server web yang menjalankan layanan yang sengaja memiliki celah untuk didemonstrasikan:
+
+- **Apache2 + PHP (port 80)** → potensi SQL Injection, XSS, file upload
+- **OpenSSH (port 22)** → potensi brute-force & user enumeration
+- **MySQL (port 3306)** → potensi brute-force kredensial / misconfig autentikasi
+
+Alur serangan diharapkan dari **Attacker → Target**, sementara seluruh lalu lintas dipantau oleh **Monitoring Node (Security Onion)** untuk mendeteksi aktivitas mencurigakan (port scan, login berulang, anomali HTTP).
+
+### Alasan Pemilihan OS Target
+
+Ubuntu Server CLI dipilih oleh tim karena:
+
+- Ringan dan hemat resource (sesuai keterbatasan RAM per kontrak)
+- Instalasi service (Apache2, MySQL, OpenSSH) mudah via CLI tanpa GUI
+- Fleksibel untuk menambah layanan pada fase implementasi nanti
 
 ---
 
-## Struktur Repository
+## Struktur & Dokumen Pendukung
 
 ```
-├── docs/
-│   ├── Laptop Cadangan/Pertemuan 2/     ← bukti lab sebelumnya
-│   ├── Laptop Utama/Pertemuan2/         ← bukti lab sebelumnya
-│   └── design/                          ← DESIGN PHASE (Minggu ke-3)
-│       ├── topology.png                 ← Gambar topologi jaringan
-│       ├── topology.drawio              ← File Draw.io (editable)
-│       ├── ip_plan.md                   ← Tabel IP & port
-│       └── README.md                    ← Deskripsi detail skenario
-├── Panduan PBL Pertemuan4 TEK1314 2026-2027.pdf
-└── README.md                            ← Halaman utama (Anda di sini)
+docs/design/
+├── topology.png   # Gambar desain jaringan (Attacker, Target, Monitoring)
+├── ip_plan.md     # Tabel Hostname, IP Address, dan OS yang direncanakan
+└── README.md      # Deskripsi skenario ini
 ```
 
----
+Link deliverables:
 
-## Dokumen Design Phase
-
-| File | Deskripsi |
-|---|---|
-| [docs/design/topology.png](docs/design/topology.png) | Gambar desain topologi jaringan (Blue Team) |
-| [docs/design/ip_plan.md](docs/design/ip_plan.md) | Tabel Hostname, IP Address, dan OS |
-| [docs/design/README.md](docs/design/README.md) | Deskripsi skenario & alasan pemilihan OS |
+- [Topologi](docs/design/topology.png)
+- [IP Plan](docs/design/ip_plan.md)
+- [Panduan PBL (PDF)](docs/Panduan PBL Pertemuan4 TEK1314 2026-2027.pdf) — panduan tugas yang dijadikan acuan
 
 ---
 
-## Anggota Tim
+## Anggota Tim & Peran
 
-| Nama | Peran |
-|---|---|
-| *(isi sesuai pembagian peran)* | Lead |
-| *(isi sesuai pembagian peran)* | Red Team |
-| *(isi sesuai pembagian peran)* | Blue Team |
-
----
-
-## Referensi
-
-- Panduan PBL Pertemuan 4 — Perancangan Arsitektur & Skema IP (PDF terlampir di root repo)
+| Nama                       | NIM         | Peran                          |
+| -------------------------- | ----------- | ------------------------------ |
+| Alya Shalika               | J0404241121 | Lead                           |
+| Syah Fauza Bintang Prawira | J0404241116 | Red Team (Attacker)            |
+| Muhammad Alfi              | J0404241024 | Blue Team (Defender / Network) |
+| Faqih Muhammad Faiz        | J0404241120 | Blue Team (Defender / Network) |
