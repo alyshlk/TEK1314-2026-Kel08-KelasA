@@ -49,7 +49,6 @@ Link deliverables:
 
 - [Topologi](docs/design/topology.png)
 - [IP Plan](docs/design/ip_plan.md)
-- [Panduan PBL (PDF)](docs/Panduan PBL Pertemuan4 TEK1314 2026-2027.pdf) — panduan tugas yang dijadikan acuan
 
 ---
 
