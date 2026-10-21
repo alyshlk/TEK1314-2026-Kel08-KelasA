@@ -18,9 +18,12 @@ Proyek ini berfokus pada pembangunan lingkungan uji (*isolated testbed*) untuk s
 
 Target adalah server web yang menjalankan layanan replika dari infrastruktur IoT asli (Next.js dan Firebase) yang sengaja memiliki celah untuk didemonstrasikan:
 
-* **Next.js App (port 3000\)** → potensi Insecure Direct Object Reference (IDOR), manipulasi REST API, dan eksploitasi API key.  
-* **OpenSSH (port 22\)** → potensi brute-force & user enumeration.  
-* **Firebase Emulator (port 4000/8080/9000)** → eksploitasi UI emulator dan akses database lokal tanpa autentikasi yang kuat.
+* **Next.js Web Application (`Port 3000`)**  
+  Menjalankan aplikasi web dengan potensi celah *Insecure Direct Object Reference* (IDOR), manipulasi *endpoint* REST API, serta kebocoran kredensial/*API key*.
+* **Firebase Emulator Suite (`Port 4000 / 8080 / 9000`)**  
+  Simulasi database lokal yang dapat diakses secara publik tanpa mekanisme autentikasi dan otorisasi yang ketat.
+* **OpenSSH Service (`Port 22`)**  
+  Layanan akses *remote* yang menjadi target untuk pengujian *user enumeration* dan serangan *brute-force login*.
 
 Alur serangan diharapkan dari **Attacker → Target** dengan fokus pada eksploitasi HTTP REST API dan layanan lokal, sementara seluruh lalu lintas dipantau oleh **Monitoring Node (Security Onion)** untuk mendeteksi aktivitas mencurigakan (port scan, login berulang, anomali HTTP).
 
