@@ -6,7 +6,7 @@
 
 # **Deskripsi Skenario**
 
-Proyek ini merancang sebuah medan perang jaringan (network lab) yang terdiri dari tiga peran utama: penyerang, target, dan pemantau. Seluruh node berada dalam satu segmen jaringan **192.168.8.0/24** (sesuai kewajiban IP unik per kelompok, mengacu Kontrak Kuliah Poin 3a).
+Proyek ini merancang sebuah medan perang jaringan (network lab) yang terdiri dari tiga peran utama: penyerang, target, dan pemantau. Seluruh node berada dalam satu segmen jaringan **192.168.8.0/24** 
 
 | Node | Peran | OS | IP |
 | :---- | :---- | :---- | :---- |
@@ -41,11 +41,6 @@ docs/design/
 ├── ip\_plan.md     \# Tabel Hostname, IP Address, dan OS yang direncanakan
 
 └── README.md      \# Deskripsi skenario ini
-
-Link deliverables:
-
-* [Topologi](docs/design/topology.png)
-* [IP Plan](docs/design/ip_plan.md)
 
 # **Anggota Tim & Peran**
 
