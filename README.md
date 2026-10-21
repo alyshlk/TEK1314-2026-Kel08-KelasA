@@ -34,6 +34,10 @@ docs/design/
 ├── ip_plan.md     
 └── README.md     
 
+Link deliverables:
+* [Topologi](http://docs/design/topology.png)  
+* [IP Plan](http://docs/design/ip_plan.md)
+
 # **Anggota Tim & Peran**
 
 | Nama | NIM | Peran |
