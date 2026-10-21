@@ -1,9 +1,3 @@
-# **TEK1314-2026-Kel08-KelasA - Proyek PBL Keamanan Siber**
-
-**Mata Kuliah:** TEK1314 - Keamanan Siber   
-**Kelompok:** 8 - Kelas A  
-**Fase:** Design Phase 
-
 # **Deskripsi Skenario**
 
 Proyek ini berfokus pada pembangunan lingkungan uji (*isolated testbed*) untuk simulasi skenario serangan (*Red Team*) dan pemantauan lalu lintas jaringan (*Blue Team*). Seluruh node berada dalam satu segmen jaringan **192.168.8.0/24**. 
@@ -18,12 +12,9 @@ Proyek ini berfokus pada pembangunan lingkungan uji (*isolated testbed*) untuk s
 
 Target adalah server web yang menjalankan layanan replika dari infrastruktur IoT asli (Next.js dan Firebase) yang sengaja memiliki celah untuk didemonstrasikan:
 
-* **Next.js Web Application (`Port 3000`)**  
-  Menjalankan aplikasi web dengan potensi celah *Insecure Direct Object Reference* (IDOR), manipulasi *endpoint* REST API, serta kebocoran kredensial/*API key*.
-* **Firebase Emulator Suite (`Port 4000 / 8080 / 9000`)**  
-  Simulasi database lokal yang dapat diakses secara publik tanpa mekanisme autentikasi dan otorisasi yang ketat.
-* **OpenSSH Service (`Port 22`)**  
-  Layanan akses *remote* yang menjadi target untuk pengujian *user enumeration* dan serangan *brute-force login*.
+* **Next.js App (port 3000\)** → potensi Insecure Direct Object Reference (IDOR), manipulasi REST API, dan eksploitasi API key.  
+* **OpenSSH (port 22\)** → potensi brute-force & user enumeration.  
+* **Firebase Emulator (port 4000/8080/9000)** → eksploitasi UI emulator dan akses database lokal tanpa autentikasi yang kuat.
 
 Alur serangan diharapkan dari **Attacker → Target** dengan fokus pada eksploitasi HTTP REST API dan layanan lokal, sementara seluruh lalu lintas dipantau oleh **Monitoring Node (Security Onion)** untuk mendeteksi aktivitas mencurigakan (port scan, login berulang, anomali HTTP).
 
@@ -31,8 +22,8 @@ Alur serangan diharapkan dari **Attacker → Target** dengan fokus pada eksploit
 
 Ubuntu Server CLI dipilih oleh tim kami karena:
 
-* Ringan dan hemat resource (sesuai keterbatasan RAM per kontrak).  
-* Instalasi service dan dependensi web modern (seperti Node.js untuk Next.js dan Firebase CLI) mudah dilakukan via CLI tanpa GUI.  
+* Ringan dan hemat resource.  
+* Instalasi service dan dependensi web modern mudah dilakukan via CLI tanpa GUI.  
 * Sesuai dengan lingkungan deployment backend pada umumnya (Linux environment).
 
 # **Struktur & Dokumen Pendukung**
