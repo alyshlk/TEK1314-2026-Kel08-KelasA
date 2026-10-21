@@ -1,2 +1,0 @@
-<img width="966" height="1020" alt="A1_ssh_root" src="https://github.com/user-attachments/assets/7d62cd42-a501-42c2-b777-3271e084dcfc" />
-<img width="966" height="1020" alt="C1_gitignore" src="https://github.com/user-attachments/assets/40526523-c2db-439e-b453-a7cfec2d8a0b" /><img width="966" height="1020" alt="C2_firebase_rules" src="https://github.com/user-attachments/assets/c3df5ba1-7f49-4014-b382-388569887028" />
