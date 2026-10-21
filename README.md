@@ -1,58 +1,78 @@
-# **TEK1314-2026-Kel08-KelasA — Proyek PBL Keamanan Siber**
+# Proyek PBL Keamanan Siber — Kelompok 8 (Kelas A)
 
-**Mata Kuliah:** TEK1314 \- Keamanan Siber (D4 Teknologi Rekayasa Komputer)  
-**Kelompok:** 8 — Kelas A  
-**Fase:** Design Phase (Pertemuan ke-4 / Minggu ke-3 Proyek PBL)
+* **Mata Kuliah:** TEK1314 — Keamanan Siber
+* **Program Studi:** D4 Teknologi Rekayasa Komputer
+* **Tahapan Proyek:** *Design Phase* (Minggu ke-3 / Pertemuan 4)
 
-# **Deskripsi Skenario**
+---
 
-Proyek ini merancang sebuah medan perang jaringan (network lab) yang terdiri dari tiga peran utama: penyerang, target, dan pemantau. Seluruh node berada dalam satu segmen jaringan **192.168.8.0/24** (sesuai kewajiban IP unik per kelompok, mengacu Kontrak Kuliah Poin 3a).
+## 1. Ringkasan Skenario
 
-| Node | Peran | OS | IP |
-| :---- | :---- | :---- | :---- |
-| Attacker Node | Red Team (penyerang) | Kali Linux | 192.168.8.100 |
-| Target Node (Korban) | Server yang dieksploitasi | Ubuntu Server CLI | 192.168.8.5 |
-| Monitoring Node | Blue Team (pemantau) | Security Onion | 192.168.8.200 |
+Proyek ini berfokus pada pembangunan lingkungan uji (*isolated testbed*) untuk simulasi skenario serangan (*Red Team*) dan pemantauan lalu lintas jaringan (*Blue Team*). 
 
-## **Target & Layanan**
+Seluruh node virtual berada dalam satu segmen jaringan lokal yang sama, yaitu **192.168.8.0/24** (alokasi subnet sesuai ketentuan Poin 3a Kontrak Kuliah).
 
-Target adalah server web yang menjalankan layanan replika dari infrastruktur IoT asli (Next.js dan Firebase) yang sengaja memiliki celah untuk didemonstrasikan:
+### Pembagian Node dan Peran
 
-* **Next.js App (port 3000\)** → potensi Insecure Direct Object Reference (IDOR), manipulasi REST API, dan eksploitasi API key.  
-* **OpenSSH (port 22\)** → potensi brute-force & user enumeration.  
-* **Firebase Emulator (port 4000/8080/9000)** → eksploitasi UI emulator dan akses database lokal tanpa autentikasi yang kuat.
+| Node | Peran | Sistem Operasi | Alamat IP |
+| :--- | :--- | :--- | :--- |
+| **Attacker** | Red Team (Uji Penetrasi) | Kali Linux | `192.168.8.100` |
+| **Target** | Server Korban / Layanan Rentan | Ubuntu Server CLI | `192.168.8.5` |
+| **Monitoring** | Blue Team (NIDS / SIEM) | Security Onion | `192.168.8.200` |
 
-Alur serangan diharapkan dari **Attacker → Target** dengan fokus pada eksploitasi HTTP REST API dan layanan lokal, sementara seluruh lalu lintas dipantau oleh **Monitoring Node (Security Onion)** untuk mendeteksi aktivitas mencurigakan (port scan, login berulang, anomali HTTP).
+---
 
-## **Alasan Pemilihan OS Target**
+## 2. Target Pengujian dan Permukaan Serangan (*Attack Surface*)
 
-Ubuntu Server CLI dipilih oleh tim karena:
+Node target menjalankan replika lingkungan *backend* berbasis IoT web service (Next.js dan Firebase) yang dikonfigurasikan dengan beberapa celah keamanan terencana:
 
-* Ringan dan hemat resource (sesuai keterbatasan RAM per kontrak).  
-* Instalasi service dan dependensi web modern (seperti Node.js untuk Next.js dan Firebase CLI) mudah dilakukan via CLI tanpa GUI.  
-* Sesuai dengan lingkungan deployment backend pada umumnya (Linux environment).
+* **Next.js Web Application (`Port 3000`)**  
+  Menjalankan aplikasi web dengan potensi celah *Insecure Direct Object Reference* (IDOR), manipulasi *endpoint* REST API, serta kebocoran kredensial/*API key*.
+* **Firebase Emulator Suite (`Port 4000 / 8080 / 9000`)**  
+  Simulasi database lokal yang dapat diakses secara publik tanpa mekanisme autentikasi dan otorisasi yang ketat.
+* **OpenSSH Service (`Port 22`)**  
+  Layanan akses *remote* yang menjadi target untuk pengujian *user enumeration* dan serangan *brute-force login*.
 
-# **Struktur & Dokumen Pendukung**
+### Alur Kerja Skenario
+1. **Red Team (`192.168.8.100`)** melakukan *reconnaissance*, pemindaian port, dan eksploitasi celah keamanan pada aplikasi web serta *service* di node target.
+2. **Node Target (`192.168.8.5`)** merespons permintaan lalu lintas uji dan mencatat aktivitas pada log sistem lokal.
+3. **Blue Team (`192.168.8.200`)** menangkap seluruh lalu lintas paket di jaringan menggunakan Security Onion untuk mendeteksi anomali, serangan HTTP, dan upaya akses tidak sah.
 
+---
+
+## 3. Justifikasi Pemilihan OS Target
+
+Kami memilih **Ubuntu Server CLI** sebagai basis node target dengan pertimbangan teknis berikut:
+
+1. **Efisiensi Alokasi Sumber Daya:** Menghilangkan antarmuka grafis (GUI) meminimalkan penggunaan RAM dan CPU host, sesuai dengan batasan alokasi resource pada spesifikasi pengerjaan.
+2. **Dukungan Lingkungan *Runtime* Modern:** Instalasi dan konfigurasi pustaka dependensi seperti Node.js, npm, serta Firebase CLI dapat dilakukan secara fleksibel dan terdokumentasi via baris perintah.
+3. **Relevansi Industri:** Merefleksikan standar lingkungan server produksi yang umumnya diterapkan pada arsitektur *cloud* dan *backend* modern.
+
+---
+
+## 4. Struktur Berkas Desain
+
+Dokumen dan artefak pendukung fase desain disimpan pada repositori dengan struktur sebagai berikut:
+
+```text
 docs/design/
+├── topology.png   # Diagram topologi jaringan lab virtual
+├── ip_plan.md     # Rincian alokasi IP, hostname, dan service tiap node
+└── README.md      # Dokumentasi umum dan deskripsi skenario
+```
 
-├── topology.png   \# Gambar desain jaringan (Attacker, Target, Monitoring)
+**Tautan Cepat Dokumen:**
+* [Diagram Topologi Jaringan](design/topology.png)
+* [Tabel Alokasi IP (IP Plan)](design/ip_plan.md)
 
-├── ip\_plan.md     \# Tabel Hostname, IP Address, dan OS yang direncanakan
+---
 
-└── README.md      \# Deskripsi skenario ini
+## 5. Anggota Tim & Pembagian Tugas
 
-Link deliverables:
-
-* [Topologi](docs/design/topology.png)
-* [IP Plan](docs/design/ip_plan.md)
-
-# **Anggota Tim & Peran**
-
-| Nama | NIM | Peran |
-| :---- | :---- | :---- |
-| Alya Shalika | J0404241121 | Lead |
-| Syah Fauza Bintang Prawira | J0404241116 | Red Team (Attacker) |
-| Muhammad Alfi | J0404241024 | Blue Team (Defender / Network) |
-| Faqih Muhammad Faiz | J0404241120 | Blue Team (Defender / Network) |
+| Nama Lengkap | NIM | Peran Utama |
+| :--- | :--- | :--- |
+| **Alya Shalika** | J0404241121 | Project Lead & Dokumentasi |
+| **Syah Fauza Bintang Prawira** | J0404241116 | Red Team (Attacker / Eksploitasi) |
+| **Muhammad Alfi** | J0404241024 | Blue Team (Jaringan & Konfigurasi SIEM) |
+| **Faqih Muhammad Faiz** | J0404241120 | Blue Team (Analisis Log & NIDS) |
 
