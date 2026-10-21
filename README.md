@@ -44,8 +44,8 @@ docs/design/
 
 Link deliverables:
 
-* [Topologi](design/topology.png)
-* [IP Plan](design/ip_plan.md)
+* [Topologi](docs/design/topology.png)
+* [IP Plan](docs/design/ip_plan.md)
 
 # **Anggota Tim & Peran**
 
