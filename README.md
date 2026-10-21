@@ -37,7 +37,7 @@ Ubuntu Server CLI dipilih oleh tim karena:
 docs/design/
 
 ├── topology.png   
-├── ip\_plan.md     
+├── ip_plan.md     
 └── README.md     
 
 # **Anggota Tim & Peran**
