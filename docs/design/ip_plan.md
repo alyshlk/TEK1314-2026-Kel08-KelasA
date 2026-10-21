@@ -33,5 +33,3 @@ Port-potensi yang dibuka / dieksploitasi pada skenario **Web Server / IoT Backen
 | 22 | OpenSSH | Brute-force SSH (hydra), user enumeration |
 | 3000 | Next.js App (HTTP) | IDOR, REST API Manipulation, Web Vuln |
 | 4000/8080/9000 | Firebase Emulator | Eksploitasi database lokal tanpa autentikasi |
-
-*Catatan: Berdasarkan koordinasi dari Lead, daftar ini dipakai sebagai dasar skenario serangan oleh Red Team dan untuk pemantauan oleh Blue Team / Security Onion.*
