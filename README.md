@@ -6,13 +6,13 @@
 
 # **Deskripsi Skenario**
 
-Proyek ini merancang sebuah medan perang jaringan (network lab) yang terdiri dari tiga peran utama: penyerang, target, dan pemantau. Seluruh node berada dalam satu segmen jaringan **192.168.8.0/24** 
+Proyek ini berfokus pada pembangunan lingkungan uji (*isolated testbed*) untuk simulasi skenario serangan (*Red Team*) dan pemantauan lalu lintas jaringan (*Blue Team*). Seluruh node berada dalam satu segmen jaringan **192.168.8.0/24**. 
 
-| Node | Peran | OS | IP |
-| :---- | :---- | :---- | :---- |
-| Attacker Node | Red Team (penyerang) | Kali Linux | 192.168.8.100 |
-| Target Node (Korban) | Server yang dieksploitasi | Ubuntu Server CLI | 192.168.8.5 |
-| Monitoring Node | Blue Team (pemantau) | Security Onion | 192.168.8.200 |
+| Node | Peran | Sistem Operasi | Alamat IP |
+| :--- | :--- | :--- | :--- |
+| **Attacker** | Red Team (Uji Penetrasi) | Kali Linux | `192.168.8.100` |
+| **Target** | Server Korban / Layanan Rentan | Ubuntu Server CLI | `192.168.8.5` |
+| **Monitoring** | Blue Team (Tim Pemantau) | Security Onion | `192.168.8.200` |
 
 ## **Target & Layanan**
 
@@ -26,7 +26,7 @@ Alur serangan diharapkan dari **Attacker → Target** dengan fokus pada eksploit
 
 ## **Alasan Pemilihan OS Target**
 
-Ubuntu Server CLI dipilih oleh tim karena:
+Ubuntu Server CLI dipilih oleh tim kami karena:
 
 * Ringan dan hemat resource (sesuai keterbatasan RAM per kontrak).  
 * Instalasi service dan dependensi web modern (seperti Node.js untuk Next.js dan Firebase CLI) mudah dilakukan via CLI tanpa GUI.  
