@@ -1,7 +1,7 @@
 # **TEK1314-2026-Kel08-KelasA - Proyek PBL Keamanan Siber**
 
-**Mata Kuliah:** TEK1314 \- Keamanan Siber (D4 Teknologi Rekayasa Komputer)  
-**Kelompok:** 8 — Kelas A  
+**Mata Kuliah:** TEK1314 - Keamanan Siber   
+**Kelompok:** 8 - Kelas A  
 **Fase:** Design Phase 
 
 # **Deskripsi Skenario**
