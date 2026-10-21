@@ -1,8 +1,8 @@
-# **TEK1314-2026-Kel08-KelasA — Proyek PBL Keamanan Siber**
+# **TEK1314-2026-Kel08-KelasA - Proyek PBL Keamanan Siber**
 
 **Mata Kuliah:** TEK1314 \- Keamanan Siber (D4 Teknologi Rekayasa Komputer)  
 **Kelompok:** 8 — Kelas A  
-**Fase:** Design Phase (Pertemuan ke-4 / Minggu ke-3 Proyek PBL)
+**Fase:** Design Phase 
 
 # **Deskripsi Skenario**
 
@@ -36,11 +36,9 @@ Ubuntu Server CLI dipilih oleh tim karena:
 
 docs/design/
 
-├── topology.png   \# Gambar desain jaringan (Attacker, Target, Monitoring)
-
-├── ip\_plan.md     \# Tabel Hostname, IP Address, dan OS yang direncanakan
-
-└── README.md      \# Deskripsi skenario ini
+├── topology.png   
+├── ip\_plan.md     
+└── README.md     
 
 # **Anggota Tim & Peran**
 
