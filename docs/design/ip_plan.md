@@ -1,6 +1,5 @@
 # **IP Plan — Kelompok 8 Kelas A**
 
-**Mata Kuliah:** TEK1314 \- Keamanan Siber  
 **Fase:** Design Phase (Perancangan Arsitektur & Skema IP)  
 Blok IP & Subnet: 192.168.8.0/24  
 Default Gateway: 192.168.8.1
