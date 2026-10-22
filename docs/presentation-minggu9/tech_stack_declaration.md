@@ -2,9 +2,6 @@
 
 **Mata Kuliah:** TEK1314 - Keamanan Siber (D4 Teknologi Rekayasa Komputer)  
 **Kelompok:** 8 — Kelas A  
-**Fokus:** Case Study SOC Engagement (Fase 1 → Fase 2)  
-
-Berdasarkan prinsip simulasi pada Panduan PBL Bagian III, Kelompok 8 mendeklarasikan bahwa pengujian (Vulnerability Assessment & eksploitasi) **TIDAK** akan dilakukan pada sistem IoT produksi/asli, melainkan pada *Target Node* replika yang dibangun secara khusus di dalam VirtualBox (*Host-Only Network*). 
 
 Berikut adalah pemetaan teknologi dari proyek IoT asli kami ke sistem replika:
 
