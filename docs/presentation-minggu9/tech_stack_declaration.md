@@ -1,7 +1,7 @@
 # Deklarasi Tech Stack & Replikasi Target Node
 
 **Mata Kuliah:** TEK1314 - Keamanan Siber (D4 Teknologi Rekayasa Komputer)  
-**Kelompok:** 8 — Kelas A  
+**Kelompok:** 8 - Kelas A  
 
 Berikut adalah pemetaan teknologi dari proyek IoT asli kami ke sistem replika:
 
