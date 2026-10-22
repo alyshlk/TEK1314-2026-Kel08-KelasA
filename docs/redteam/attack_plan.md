@@ -10,7 +10,7 @@ Berdasarkan Panduan PBL, seluruh serangan HANYA akan dilakukan di dalam jaringan
 
 *   **Attacker Node (Red Team):** `192.168.8.100` (Kali Linux)
 *   **Target Node (Korban):** `192.168.8.5` (Ubuntu Server CLI - Replika IoT Backend)
-*   **Monitoring Node (Blue Team):** `192.168.8.200` (Security Onion)
+*   **Monitoring Node (Blue Team & Purple Team):** `192.168.8.200` (Security Onion)
 
 ---
 
@@ -30,7 +30,7 @@ Red Team merencanakan 3 (tiga) skenario serangan dari kategori yang berbeda untu
     3. Analisis *output* untuk memastikan apakah port 22, 3000, 4000, 8080, dan 9000 terdeteksi terbuka, dan apakah ada port lain yang bocor.
 *   **Ekspektasi Purple Team Loop:**
     *   **Red Team:** Mendapatkan daftar layanan yang berjalan beserta versinya.
-    *   **Blue Team:** Security Onion mendeteksi adanya aktivitas *mass port scanning* dan menghasilkan *alert* intrusi dari IP `192.168.8.100`.
+    *   **Blue Team & Purple Team:** Security Onion mendeteksi adanya aktivitas *mass port scanning* dan menghasilkan *alert* intrusi dari IP `192.168.8.100`.
 
 ### Skenario 2: Eksploitasi Akses (SSH Brute-Force)
 *   **Kategori Serangan:** Exploitation / Akses
@@ -44,7 +44,7 @@ Red Team merencanakan 3 (tiga) skenario serangan dari kategori yang berbeda untu
     3. Pantau apakah terminal Hydra terus berjalan atau mengalami pemutusan koneksi (*connection reset/timeout*).
 *   **Ekspektasi Purple Team Loop:**
     *   **Red Team:** Serangan gagal menembus masuk; setelah beberapa kali percobaan, IP penyerang diblokir oleh Target Node.
-    *   **Blue Team:** Melampirkan bukti log pemblokiran IP oleh *Fail2ban* (atau *iptables*) dan menunjukkan *alert* autentikasi gagal masif di Security Onion.
+    *   **Blue Team & Purple Team:** Melampirkan bukti log pemblokiran IP oleh *Fail2ban* (atau *iptables*) dan menunjukkan *alert* autentikasi gagal masif di Security Onion.
 
 ### Skenario 3: Web & API Manipulation (Eksploitasi REST API & Firebase)
 *   **Kategori Serangan:** Web/API/Protokol IoT
@@ -58,4 +58,4 @@ Red Team merencanakan 3 (tiga) skenario serangan dari kategori yang berbeda untu
     4. Buka *tab* baru dan akses UI Firebase secara langsung: `http://192.168.8.5:4000`. Coba lakukan modifikasi data (*Create/Update/Delete*) langsung dari UI emulator.
 *   **Ekspektasi Purple Team Loop:**
     *   **Red Team:** Akses manipulasi API dan manipulasi data melalui Firebase ditolak dengan pesan error `403 Forbidden` atau `Permission Denied` jika proteksi aplikasi sudah baik.
-    *   **Blue Team:** Mengonfirmasi bahwa *Firebase Security Rules* berhasil memblokir *query* ilegal dan melampirkan log *traffic* HTTP anomali yang ditangkap oleh Security Onion.
+    *   **Blue Team & Purple Team:** Mengonfirmasi bahwa *Firebase Security Rules* berhasil memblokir *query* ilegal dan melampirkan log *traffic* HTTP anomali yang ditangkap oleh Security Onion.
