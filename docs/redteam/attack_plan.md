@@ -59,6 +59,3 @@ Red Team merencanakan 3 (tiga) skenario serangan dari kategori yang berbeda untu
 *   **Ekspektasi Purple Team Loop:**
     *   **Red Team:** Akses manipulasi API dan manipulasi data melalui Firebase ditolak dengan pesan error `403 Forbidden` atau `Permission Denied` jika proteksi aplikasi sudah baik.
     *   **Blue Team:** Mengonfirmasi bahwa *Firebase Security Rules* berhasil memblokir *query* ilegal dan melampirkan log *traffic* HTTP anomali yang ditangkap oleh Security Onion.
-
----
-*Dokumen ini disusun oleh Red Team dan telah disetujui oleh Lead Kelompok 8 untuk diimplementasikan pada praktikum Fase 2.*
