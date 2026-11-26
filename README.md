@@ -90,12 +90,62 @@ docs/
 
 **Link Deliverables:**
 
-* [Topologi Jaringan](http://docs/design/topology.png)  
-* [IP Plan & Port](http://docs/design/ip_plan.md)  
-* [Hardening Checklist (Blue Team)](http://docs/blueteam/hardening_checklist.md)  
-* [Attack Plan (Red Team)](http://docs/redteam/attack_plan.md)
+| Fase | Dokumen | Tautan |
+| :--- | :--- | :--- |
+| 1 | Topologi Jaringan | [`docs/design/topology.png`](docs/design/topology.png) |
+| 1 | IP Plan & Port | [`docs/design/ip_plan.md`](docs/design/ip_plan.md) |
+| 2 | Deklarasi Tech Stack | [`docs/presentation-minggu9/tech_stack_declaration.md`](docs/presentation-minggu9/tech_stack_declaration.md) |
+| 2 | Hardening Checklist (Blue Team) | [`docs/blueteam/hardening_checklist.md`](docs/blueteam/hardening_checklist.md) |
+| 2 | Attack Plan (Red Team) | [`docs/redteam/attack_plan.md`](docs/redteam/attack_plan.md) |
+| 2 | Purple Team Loop Log | [`docs/purple-team-log.md`](docs/purple-team-log.md) |
+| 3 | Incident Report Final | [`docs/final/incident_report.pdf`](docs/final/incident_report.pdf) |
+| 3 | Video Demo Purple Team Loop | `docs/final/video_demo.mp4` |
+| 3 | Slide Presentasi Final | `docs/presentation-final/slides.pdf` |
 
 ---
 
+## Hasil Akhir: Rekapitulasi Tiga Siklus Purple Team Loop
 
+Seluruh skenario telah dijalankan hingga **Tahap 5 (Verifikasi)**. Rincian lengkap per tahap ada di [`docs/purple-team-log.md`](docs/purple-team-log.md), sedangkan sintesis dan analisis akar masalah ada di [`docs/final/incident_report.pdf`](docs/final/incident_report.pdf).
 
+| Aspek | Skenario 1 — Recon | Skenario 2 — SSH Brute-Force | Skenario 3 — Web & API |
+| :--- | :--- | :--- | :--- |
+| **Lapisan serangan** | Jaringan | Autentikasi | Aplikasi |
+| **Perkakas** | Nmap | Hydra | Burp Suite, browser |
+| **Deteksi Security Onion** | Berhasil — SID 2018489, 2018317, 2001219 | Berhasil — SID 2006546 | Tidak terdeteksi spesifik |
+| **Kontrol yang menghentikan** | Tidak ada | Fail2ban + nftables | Tidak ada |
+| **Mitigasi diterapkan** | Sebagian | Penuh | Belum |
+| **Hasil Verifikasi** | Reconnaissance tetap dapat dilakukan | Blokir terverifikasi (`Total banned: 2`) | **Celah masih terbuka** |
+| **Tingkat keparahan** | Rendah–Sedang | Sedang | Tinggi–Kritis |
+
+### Temuan Utama
+
+**Skenario 1 dan 2 tertahan oleh konfigurasi sistem.** UFW memperkecil attack surface, dan Fail2ban bersama nftables memblokir serangan brute-force di level kernel. Keduanya terverifikasi melalui pengulangan serangan yang sama.
+
+**Skenario 3 mengungkap celah paling serius.** Seluruh route API pada replika tidak melakukan verifikasi token. Red Team berhasil membaca daftar pengguna beserta email dan role tanpa header `Authorization`, menaikkan hak akses dari `operator` menjadi `admin` melalui `PATCH /api/users/[uid]`, memetakan username melalui perbedaan respons `200` vs `404`, membocorkan konfigurasi environment melalui `/api/debug/env`, dan mengubah data langsung dari Firebase Emulator UI pada port `4000`.
+
+Akar masalahnya bukan penulisan Security Rules yang buruk, melainkan **penempatan lapisan kepercayaan yang salah**. `firebase.rules.json` sudah mewajibkan `auth != null` pada hampir seluruh node, tetapi seluruh route memakai Firebase **Admin SDK** yang secara desain melewati Security Rules. Selama route API tidak memeriksa identitas pemanggilnya sendiri, rules sekuat apa pun tidak akan pernah dievaluasi.
+
+### Pelajaran Lintas Skenario
+
+1. **Deteksi dan pencegahan adalah dua hal berbeda**, dan keduanya dibutuhkan di lapisan yang tepat. Security Onion mendeteksi dua dari tiga skenario, tetapi tidak pernah menghentikan apa pun dengan sendirinya.
+2. **Kontrol keamanan hanya berlaku pada lapisan tempat ia ditempatkan.** Rules di database tidak melindungi API yang memakai Admin SDK.
+3. **Inventaris aset yang tidak lengkap menciptakan celah yang tidak terlihat.** Port `9099` dan `9199` berjalan namun tidak terdaftar dalam whitelist UFW awal — dicatat sebagai *incomplete asset inventory*.
+4. **Membaca kode sumber lebih efektif daripada menebak.** Pembacaan route handler mengungkap seluruh pola kerentanan dalam hitungan menit.
+5. **Verifikasi yang jujur lebih bernilai daripada klaim keberhasilan.** Verifikasi Skenario 3 menghasilkan `408 Request Timeout`, bukan `200`, dan kondisi itu dilaporkan apa adanya sebagai bukti ketiadaan lapisan otorisasi.
+
+Efektivitas pertahanan yang sebenarnya berasal dari kombinasi tiga hal: **sensor yang melihat, kontrol yang membatasi, dan kode yang memvalidasi.** Menghilangkan salah satunya membuat pertahanan bocor tepat pada lapisan tersebut.
+
+---
+
+## Catatan Etika & Batasan
+
+* Seluruh pengujian dilakukan **hanya** pada replika pada jaringan Host-Only VirtualBox `192.168.8.0/24`.
+* Tidak ada pengujian, pemindaian, atau eksploitasi yang diarahkan ke sistem IoT asli milik mitra maupun perangkat sensor fisiknya.
+* Seluruh data yang digunakan bersifat **dummy dan sintetis**.
+* Rekomendasi hardening pada laporan ini dapat diteruskan ke sistem asli atas inisiatif kelompok bersama pembimbing proyek IoT, di luar lingkup penilaian PBL.
+
+---
+
+**Dosen Pengampu:** SNN
+**Standar Acuan:** NIST SP 800-61r2 — Computer Security Incident Handling Guide
