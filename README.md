@@ -4,6 +4,14 @@
 **Kelompok:** 8 — Kelas A  
 **Konteks Sistem:** Pengamanan Infrastruktur Backend Replika **PiRoTech** (Alat Pirolisis Limbah Plastik Menjadi BBM Berbasis IoT)
 
+#### **Anggota Tim & Peran**
+
+| Nama | NIM | Peran |
+| :---- | :---- | :---- |
+| Alya Shalika | J0404241121 | Lead |
+| Syah Fauza Bintang Prawira | J0404241116 | Red Team (Attacker) |
+| Muhammad Alfi | J0404241024 | Blue Team (Defender / Network) |
+| Faqih Muhammad Faiz | J0404241120 | Blue Team (Defender / Network) |
 ---
 
 ## Deskripsi Proyek & Arsitektur Simulasi
@@ -89,12 +97,5 @@ docs/
 
 ---
 
-#### **Anggota Tim & Peran**
 
-| Nama | NIM | Peran |
-| :---- | :---- | :---- |
-| Alya Shalika | J0404241121 | Lead |
-| Syah Fauza Bintang Prawira | J0404241116 | Red Team (Attacker) |
-| Muhammad Alfi | J0404241024 | Blue Team (Defender / Network) |
-| Faqih Muhammad Faiz | J0404241120 | Blue Team (Defender / Network) |
 
