@@ -1,7 +1,7 @@
 # TEK1314-2026-Kel08-KelasA — Proyek PBL Keamanan Siber
 
 **Mata Kuliah:** TEK1314 - Keamanan Siber (D4 Teknologi Rekayasa Komputer SV IPB)  
-**Kelompok:** 8 — Kelas A  
+**Kelompok:** 8 - Kelas A  
 **Konteks Sistem:** Pengamanan Infrastruktur Backend Replika **PiRoTech** (Alat Pirolisis Limbah Plastik Menjadi BBM Berbasis IoT)
 
 #### **Anggota Tim & Peran**
