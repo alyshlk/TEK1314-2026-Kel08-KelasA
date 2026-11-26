@@ -147,5 +147,4 @@ Efektivitas pertahanan yang sebenarnya berasal dari kombinasi tiga hal: **sensor
 
 ---
 
-**Dosen Pengampu:** SNN
-**Standar Acuan:** NIST SP 800-61r2 — Computer Security Incident Handling Guide
+
