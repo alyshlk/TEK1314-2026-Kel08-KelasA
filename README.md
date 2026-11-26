@@ -99,8 +99,8 @@ docs/
 | 2 | Attack Plan (Red Team) | [`docs/redteam/attack_plan.md`](docs/redteam/attack_plan.md) |
 | 2 | Purple Team Loop Log | [`docs/purple-team-log.md`](docs/purple-team-log.md) |
 | 3 | Incident Report Final | [`docs/final/incident_report.pdf`](docs/final/incident_report.pdf) |
-| 3 | Video Demo Purple Team Loop | `docs/final/video_demo.mp4` |
-| 3 | Slide Presentasi Final | `docs/presentation-final/slides.pdf` |
+| 3 | Video Demo Purple Team Loop | [`docs/final/video_demo.mp4`](https://drive.google.com/file/d/1bf7kY0gXJJVAHXc7gxTImFRCuqQIGpQU/view?usp=drivesdk)|
+| 3 | Slide Presentasi Final | [`docs/presentation-final/slides.pdf`](docs/presentation-final/slides.pdf)  |
 
 ---
 
