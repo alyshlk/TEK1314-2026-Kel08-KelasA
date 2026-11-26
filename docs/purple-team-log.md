@@ -3,7 +3,7 @@
 **Mata Kuliah:** TEK1314 - Keamanan Siber (D4 Teknologi Rekayasa Komputer SV IPB)
 **Kelompok:** 8 — Kelas A
 **Tanggal Eksekusi:** 26 November 2026
-**Acuan:** NIST SP 800-61r2, Panduan PBL Minggu ke-9 (Purple Team Loop Tahap 1–5)
+**Acuan:** Panduan PBL Minggu ke-9 (Purple Team Loop Tahap 1–5)
 
 ## Lingkungan Simulasi
 
